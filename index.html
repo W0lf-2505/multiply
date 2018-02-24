@@ -13,6 +13,8 @@
 
 <script>
 
+	var flag = 0;
+	
 	function output(text) {
 
    		document.getElementById("output_area").append(text + "\n\n");
@@ -21,7 +23,11 @@
 
 
   	var Module = {
-
+		
+		onRuntimeInitialized: function(){
+			changeflag();
+		},
+		
     		'print': function (text) {
 
       			output("print\n" + text);
@@ -34,6 +40,9 @@
 		},
 
   	};
+	function changeflag(){
+		flag = 1;
+	}
 
 </script>
 
@@ -42,13 +51,15 @@
 <script>
 
 	const wait = (ms) => {
-  return new Promise((resolve) => {
-    setTimeout(resolve, ms);
-  });
-}
+ 		return new Promise((resolve) => {
+    			setTimeout(resolve, ms);
+  		});
+	}
 
 	coordMultiply = async function(event) {
-		await wait(3000);
+		while (flag === 0 ) {
+			await wait(100);
+		}
     		var x = event.clientX;
     		var y = event.clientY;
 		var multiply = Module.cwrap('multiply', 'number', ['number']);
