@@ -5,9 +5,10 @@
 		</script>
 	</head>
 	<body style="height=100%">
+		
 		<textarea id="output_area" style="width:100%; height:50%"></textarea>
 		<button onclick="coordMultiply(event)" style="width:100%; height:50%"> Submit  </button>
-	<body>
+	</body>
 
 
 <script>
@@ -20,10 +21,6 @@
 
 
   	var Module = {
-		
-		onRuntimeInitialized: async function() {
-		await wait();
-		},
 
     		'print': function (text) {
 
@@ -40,14 +37,18 @@
 
 </script>
 
-<script>
-	function wait(){
-		document.getElementsByTagName('button')[0].click();
-	}
-</script>
+
 
 <script>
-	coordMultiply = function(event) {
+
+	const wait = (ms) => {
+  return new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
+}
+
+	coordMultiply = async function(event) {
+		await wait(200);
     		var x = event.clientX;
     		var y = event.clientY;
 		var multiply = Module.cwrap('multiply', 'number', ['number']);
@@ -56,5 +57,7 @@
 	}
 
 </script>
-
+<script>
+		document.getElementsByTagName('button')[0].click();
+</script>
 </html>
