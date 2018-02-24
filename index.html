@@ -22,7 +22,7 @@
   	var Module = {
 		
 		onRuntimeInitialized: async function() {
-		await test();
+		await wait();
 		},
 
     		'print': function (text) {
@@ -38,11 +38,13 @@
 
   	};
 
-
-
 </script>
 
-
+<script>
+	function wait(){
+		document.getElementsByTagName('button')[0].click();
+	}
+</script>
 
 <script>
 	coordMultiply = function(event) {
@@ -53,13 +55,6 @@
 		output(result);
 	}
 
-</script>
-<script>
-	function test(){
-		var multiply = Module.cwrap('multiply', 'number', ['number']);
-		var ans = multiply(100, 200);
-		output(ans);
-	}
 </script>
 
 </html>
