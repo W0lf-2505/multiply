@@ -1,15 +1,18 @@
 #include<iostream>
+
 int main()
 
 {
-
-   std::cout << "initialized";
-
+   int x,y,z;
+   std::cout << "initialized\n";
 }
+
+extern "C" {
 int multiply(float x, float y)
+   {
+	float p;
+	p = x * y;
+        return p;
 
-{
-
-    return x * y;
-
+   }
 }
