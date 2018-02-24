@@ -1,7 +1,8 @@
 <html lang="en-us">
 	<head>
 		<title>Pointer Multiplier</title>
-
+		<script async type="text/javascript" src="multiply.js">
+		</script>
 	</head>
 	<body style="height=100%">
 		<textarea id="output_area" style="width:100%; height:50%"></textarea>
@@ -17,7 +18,12 @@
 
   	}
 
+
   	var Module = {
+		
+		onRuntimeInitialized: async function() {
+		await test();
+		},
 
     		'print': function (text) {
 
@@ -32,13 +38,12 @@
 
   	};
 
-	
 
 
 </script>
 
-<script src="multiply.js"></script>
-<script src="multiply_in_js.js"></script>
+
+
 <script>
 	coordMultiply = function(event) {
     		var x = event.clientX;
@@ -46,6 +51,14 @@
 		var multiply = Module.cwrap('multiply', 'number', ['number']);
 		var result = multiply(x, y);
 		output(result);
+	}
+
+</script>
+<script>
+	function test(){
+		var multiply = Module.cwrap('multiply', 'number', ['number']);
+		var ans = multiply(100, 200);
+		output(ans);
 	}
 </script>
 
