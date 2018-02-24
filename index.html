@@ -38,14 +38,14 @@
 </script>
 
 <script src="multiply.js"></script>
-
+<script src="multiply_in_js.js"></script>
 <script>
 	coordMultiply = function(event) {
     		var x = event.clientX;
     		var y = event.clientY;
 		var multiply = Module.cwrap('multiply', 'number', ['number']);
 		var result = multiply(x, y);
-		output("print\n" + x + "\n" + y + "\n"  + result);
+		output(result);
 	}
 </script>
 

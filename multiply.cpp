@@ -8,11 +8,10 @@ int main()
 }
 
 extern "C" {
+extern int multiply_in_js(int x, int y);
 int multiply(float x, float y)
    {
-	float p;
-	p = x * y;
-        return p;
+        return multiply_in_js(x, y);
 
    }
 }
